@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @Getter //gera métodos gettes
 @NoArgsConstructor //gera constrotor vazio
 @AllArgsConstructor // gera construtor com todos os atributos
+
 public class Endereco {
 	
 	private String logradouro;
@@ -21,4 +22,14 @@ public class Endereco {
 	private String complemento;
 	private String numero;
 
+
+	public Endereco(DadosEndereco endereco) {
+		this.logradouro = endereco.logradouro();
+		this.bairro = endereco.bairro();
+		this.cep = endereco.cep();
+		this.cidade = endereco.cidade();
+		this.uf = endereco.uf();
+		this.complemento = endereco.complemento();
+		this.numero = endereco.numero();
+	}
 }
