@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,5 +34,11 @@ public class MedicoController {
 	@GetMapping
 	public Page<DadosListagemMedico> listar(@PageableDefault(size =10, sort = {"nome"}) Pageable paginacao){
 		return medicoRepository.findAll(paginacao).map(DadosListagemMedico::new); //chamando método listar todos jpa e convertendo o dadosListagemMedico para um tipo médico
+	}
+	
+	@PutMapping
+	@Transactional
+	public void atualizar(@RequestBody @Valid DadosAtualizarMedico dados) {
+		
 	}
 }
