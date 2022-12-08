@@ -1,19 +1,13 @@
 package med.voll.api.medico;
 
-import jakarta.persistence.Embedded;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+
+
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import med.voll.api.endereco.DadosEndereco;
+import jakarta.persistence.*;
 import med.voll.api.endereco.Endereco;
 
 @Table(name = "medicos")
@@ -35,9 +29,11 @@ public class Medico {
 	private Especialidade especialidade;
 	@Embedded //ficam em classes separadas mais o BD considera como sendo da mesma tabela
 	private Endereco endereco;
+	private Boolean ativo;
 
 	
 	public Medico(DadosCadastroMedico dados) {
+		this.ativo = true;
 		this.nome = dados.nome();
 		this.email = dados.email();
 		this.telefone = dados.telefone();
@@ -58,5 +54,11 @@ public class Medico {
 			this.endereco.atualizarInformacoesEndereco(dados.endereco());			
 		}
 		
+	}
+
+
+	public void excluir() {
+		// TODO Auto-generated method stub
+		this.ativo = false;
 	}
 }
